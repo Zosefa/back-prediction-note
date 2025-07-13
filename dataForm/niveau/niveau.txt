@@ -1,0 +1,89 @@
+. create: POST : http://localhost:5000/api/niveau
+   
+   - dataForm : 
+    {
+        "codeN": "M3",
+        "niveau": "Master 3",
+        "description": "Classe de Niveau de Master 3"
+    }
+
+   - dataResponse success : 
+    {
+        "message": "niveau d'étude créé",
+        "data": {
+            "id": 6,
+            "codeN": "M3",
+            "niveau": "Master 3",
+            "description": "Classe de Niveau de Master 3"
+        }
+    } 
+
+. findAll: GET : http://localhost:5000/api/niveau
+
+    - dataResponse success : 
+    {
+        "message": "Récupération des Niveaux avec succès",
+        "Items": 5,
+        "Pages": 1,
+        "currentPage": 1,
+        "data": [
+            {
+                "id": 1,
+                "codeN": "L1",
+                "niveau": "Licence 1",
+                "description": "Classe de Niveau de Licence 1"
+            }
+        ]
+    }
+
+.findById: GET : http://localhost:5000/api/niveau/:id
+
+    - dataResponse success : 
+    {
+        "message": "Niveau recuperer",
+        "data": {
+            "id": 1,
+            "codeN": "L1",
+            "niveau": "Licence 1",
+            "description": "Classe de Niveau de Licence 1"
+        }
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "Niveau non trouvé"
+    }
+
+.update: PUT : http://localhost:5000/api/niveau/:id
+
+    - dataForm : 
+    {
+        "codeN": "M3",
+        "niveau": "Master 3",
+        "description": "Classe de Niveau de Master 3"
+    }
+
+    - dataResponse success : 
+    {
+        "message": "niveau d'etude modifier !",
+        "data": [
+            1
+        ]
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "Niveau non trouver !"
+    }
+
+.delete: DELETE : http://localhost:5000/api/niveau/:id
+
+    - dataResponse success : 
+    {
+        "message": "suppression éfféctuer !"
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "Niveau non trouver !"
+    }

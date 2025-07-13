@@ -1,0 +1,89 @@
+. create: POST : http://localhost:5000/api/promotion
+   
+   - dataForm : 
+    {
+        "codeP": "IG01",
+        "promotion": "Informatique de gestion promotio 01",
+        "description": "premiere promotion dans la filiere de informatique de gestion"
+    }
+
+   - dataResponse success : 
+    {
+        "message": "promotion creer avec success !",
+        "data": {
+            "id": 2,
+            "codeP": "IG01",
+            "promotion": "Informatique de gestion promotio 01",
+            "description": "premiere promotion dans la filiere de informatique de gestion"
+        }
+    }
+
+. findAll: GET : http://localhost:5000/api/promotion
+
+    - dataResponse success : 
+    {
+        "message": "Récupération des promotions avec succès",
+        "Items": 1,
+        "Pages": 1,
+        "currentPage": 1,
+        "data": [
+            {
+                "id": 1,
+                "codeP": "IG01",
+                "promotion": "Informatique de gestion promotio 01",
+                "description": "premiere promotion dans la filiere de informatique de gestion"
+            }
+        ]
+    }
+
+.findById: GET : http://localhost:5000/api/promotion/:id
+
+    - dataResponse success : 
+    {
+        "message": "promotion recuperer !",
+        "data": {
+            "id": 1,
+            "codeP": "IG01",
+            "promotion": "Informatique de gestion promotio 01",
+            "description": "premiere promotion dans la filiere de informatique de gestion"
+        }
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "promotion non trouver !"
+    }
+
+.update: PUT : http://localhost:5000/api/promotion/:id
+
+    - dataForm : 
+    {
+        "codeP": "IG0111",
+        "promotion": "Informatique de gestion promotio 01",
+        "description": "premiere promotion dans la filiere de informatique de gestion"
+    }
+
+    - dataResponse success : 
+    {
+        "message": "modification de la promotion effectuer !",
+        "data": [
+            1
+        ]
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "promotion non trouver !"
+    }
+
+.delete: DELETE : http://localhost:5000/api/promotion/:id
+
+    - dataResponse success : 
+    {
+        "message": "promotion supprimer !"
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "promotion non trouver !"
+    }

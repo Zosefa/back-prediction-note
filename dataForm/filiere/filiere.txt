@@ -1,0 +1,89 @@
+. create: POST : http://localhost:5000/api/filiere
+   
+   - dataForm : 
+    {
+        "codef": "MR",
+        "filiere": "Maintenance et Reseau",
+        "description": "Filiere qui se consacre vers la maintenance de machine et le reseau dans les entreprises"
+    }
+
+   - dataResponse success : 
+    {
+        "message": "filiere inserer avec success !",
+        "data": {
+            "id": 2,
+            "codef": "MR",
+            "filiere": "Maintenance et Reseau",
+            "description": "Filiere qui se consacre vers la maintenance de machine et le reseau dans les entreprises"
+        }
+    }
+
+. findAll: GET : http://localhost:5000/api/filiere
+
+    - dataResponse success : 
+    {
+        "message": "Récupération des Filières avec succès",
+        "Items": 2,
+        "Pages": 1,
+        "currentPage": 1,
+        "data": [
+            {
+                "id": 1,
+                "codef": "IG",
+                "filiere": "Informatique de Gestion",
+                "description": "Filiere qui se consacre vers la programmation et le developpement"
+            }
+        ]
+    }
+
+.findById: GET : http://localhost:5000/api/filiere/:id
+
+    - dataResponse success : 
+    {
+        "message": "filiere recuperer !",
+        "data": {
+            "id": 2,
+            "codef": "MR",
+            "filiere": "Maintenance et Reseau",
+            "description": "Filiere qui se consacre vers la maintenance de machine et le reseau dans les entreprises"
+        }
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "filière non trouver !"
+    }
+
+.update: PUT : http://localhost:5000/api/filiere/:id
+
+    - dataForm : 
+    {
+        "codef": "MR1",
+        "filiere": "Maintenance et Reseau",
+        "description": "Filiere qui se consacre vers la maintenance de machine et le reseau dans les entreprises"
+    }
+
+    - dataResponse success : 
+    {
+        "message": "filiere mise a jour !",
+        "data": [
+            1
+        ]
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "filiere non trouver !"
+    }
+
+.delete: DELETE : http://localhost:5000/api/filiere/:id
+
+    - dataResponse success : 
+    {
+        "message": "filiere Supprimer !"
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "filiere non trouver !"
+    }

@@ -1,21 +1,20 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/configDb');
 
-const Niveau = sequelize.define('Niveau', {
+const Promotion = sequelize.define('Promotion', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    codeN: {
+    codeP: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    niveau: {  
+    promotion: {  
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     description: {  
         type: DataTypes.STRING,
@@ -23,7 +22,7 @@ const Niveau = sequelize.define('Niveau', {
     }
 }, {
     timestamps: false,
-    tableName: 'niveau'
+    tableName: 'promotion'
 });
 
-module.exports = Niveau;
+module.exports = Promotion;

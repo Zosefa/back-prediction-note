@@ -28,6 +28,10 @@ const NoteExamen = sequelize.define('NoteExamen', {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
+    },
+    note: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
     }
 }, {
     timestamps: false,

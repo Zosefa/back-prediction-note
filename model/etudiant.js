@@ -14,7 +14,7 @@ const Etudiant = sequelize.define('Etudiant', {
         unique: true,
         allowNull: false,
         set(value) {
-            this.setDataValue('identifiant', value.toUpperCase());
+            this.setDataValue('matricule', value.toUpperCase());
         }
     },
     nom: {
@@ -39,7 +39,7 @@ const Etudiant = sequelize.define('Etudiant', {
             model: Promotion,
             key: 'id'
         },
-        onUpdate: CASCADE
+        onUpdate: 'CASCADE'
     },
     filiereId: {
         type: DataTypes.INTEGER,

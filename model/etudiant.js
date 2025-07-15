@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/configDb');
+const Promotion = require('./promotion');
+const Filiere = require('./filiere');
 
 const Etudiant = sequelize.define('Etudiant', {
     id: {
@@ -12,7 +14,7 @@ const Etudiant = sequelize.define('Etudiant', {
         unique: true,
         allowNull: false,
         set(value) {
-            this.setDataValue('identifiant', value.toUpperCase());
+            this.setDataValue('matricule', value.toUpperCase());
         }
     },
     nom: {
@@ -31,6 +33,22 @@ const Etudiant = sequelize.define('Etudiant', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    promotionId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Promotion,
+            key: 'id'
+        },
+        onUpdate: 'CASCADE'
+    },
+    filiereId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Filiere,
+            key: 'id'
+        },
+        onUpdate: 'CASCADE'
+    },
     photo: {
         type: DataTypes.STRING,
         allowNull: false
@@ -39,5 +57,11 @@ const Etudiant = sequelize.define('Etudiant', {
     timestamps: false,
     tableName: 'etudiant'
 });
+
+Promotion.hasMany(Etudiant, { foreignKey: 'promotionId' });
+Etudiant.belongsTo(Promotion, { foreignKey: 'promotionId' });
+
+Filiere.hasMany(Etudiant, { foreignKey: 'filiereId' });
+Etudiant.belongsTo(Filiere, { foreignKey: 'filiereId' });
 
 module.exports = Etudiant;

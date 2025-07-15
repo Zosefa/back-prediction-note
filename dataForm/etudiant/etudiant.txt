@@ -1,0 +1,96 @@
+. create: POST : http://localhost:5000/api/etudiant
+   
+   - dataForm  (en plus d'envoyer ces donner il faut envoyer une image avec un form multipart-form/data): 
+    {
+        "matricule": "...",
+        "nom": "...",
+        "prenom": "...",
+        "dateNaissance": "2000-01-01",
+        "adresse": "...",
+        "promotionId": 1,
+        "filiereId": 1
+    } 
+
+   - test sur insomnia : dans body choisir form-Data au lieu de json afin de pouvoir envoier un image , renseigner tous les champs necesaire et ajouter un autre champs photo et le mettre en type file
+
+   - dataResponse success : 
+    {
+        "message": "Étudiant créé avec succès.",
+        "data": 1
+    }
+
+.createContact : POST : http://localhost:5000/api/etudiant/create-contact
+
+    - dataForm : 
+    {
+        "idEtudiant": 1,
+        "contactEtudiant": 
+            [
+            {
+                    "etudiantId": 0,
+                    "contact": "0343562462"
+                },
+                {
+                    "etudiantId": 0,
+                    "contact": "0322943177"
+                }
+            ]
+        
+    }
+    - dataResponse success : 
+    {
+        "message": "Contacts ajoutés"
+    }
+
+    - dataResponse notFound : 
+    {
+        "message": "Etudiant non trouver !"
+    }
+
+. findAll: GET : http://localhost:5000/api/etudiant
+
+    - dataResponse success : 
+    {
+        "message": "Récupération des Filières avec succès",
+        "Items": 2,
+        "Pages": 1,
+        "currentPage": 1,
+        "data": [
+            {
+                "id": 1,
+                "matricule": "2501",
+                "nom": "RAHERIMANANA",
+                "prenom": "Toky",
+                "dateNaissance": "2004-10-28T00:00:00.000Z",
+                "adresse": "FAIV 410 B",
+                "promotionId": 1,
+                "filiereId": 1,
+                "photo": "1752564957103-163103150-392f5486-b324-45a3-a39a-828b84135e41.jpeg",
+                "ContactEtudiants": [
+                    {
+                        "id": 1,
+                        "etudiantId": 1,
+                        "contact": "0343562462"
+                    },
+                    {
+                        "id": 2,
+                        "etudiantId": 1,
+                        "contact": "0322943177"
+                    }
+                ],
+                "Filiere": {
+                    "id": 1,
+                    "codef": "IG",
+                    "filiere": "Informatique de Gestion",
+                    "description": "Filiere qui se consacre vers la programmation et le developpement"
+                },
+                "Promotion": {
+                    "id": 1,
+                    "codeP": "IG01",
+                    "promotion": "Informatique de gestion promotio 01",
+                    "description": "premiere promotion dans la filiere de informatique de gestion"
+                }
+            }
+        ]
+    }
+

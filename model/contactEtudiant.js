@@ -27,4 +27,7 @@ const ContactEtudiant = sequelize.define('ContactEtudiant', {
     tableName: 'contact-etudiant'
 });
 
+Etudiant.hasMany(ContactEtudiant, { foreignKey: 'etudiantId' });
+ContactEtudiant.belongsTo(Etudiant, { foreignKey: 'etudiantId' });
+
 module.exports = ContactEtudiant;

@@ -1,6 +1,3 @@
-export const EtudiantController = {
-
-};
-
-
-
+const createHeaderEtudiant = async (req, res) => {
+    
+}

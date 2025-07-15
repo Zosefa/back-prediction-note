@@ -28,6 +28,10 @@ const Gerant = sequelize.define("Gerant", {
     isPasswordTemp: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
+    },
+    photo: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     timestamps: false,

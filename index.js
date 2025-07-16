@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const path = require('path');
 const sequelize = require('./config/configDb');
 
 const authenticateToken = require('./middleware/middleware');
@@ -25,6 +26,8 @@ const corsOptions = {
 
 const app = express();
 
+app.use('/public',express.static(path.join(__dirname, 'public')));
+
 app.use(cors(corsOptions));
 
 app.use(express.json({ extended: true }));
@@ -34,7 +37,7 @@ app.use(cookieParser());
 app.use("/api/niveau",authenticateToken, niveauRoute);
 app.use("/api/filiere",authenticateToken, filiereRoute);
 app.use("/api/promotion",authenticateToken, promotionRoute);
-app.use("/api/etudiant",authenticateToken, etudiantRoute);
+app.use("/api/etudiant", etudiantRoute);
 app.use("/api/gerant",authenticateToken, gerantRoute);
 app.use("/api/auth", authRoute);
 
